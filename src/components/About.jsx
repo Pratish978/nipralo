@@ -4,7 +4,7 @@ import aboutImg from '../assets/about1.png';
 export default function About() {
   return (
     <section id="about" className="w-full bg-[#FFFBF7] relative">
-      <div className="w-full relative min-h-[600px] sm:min-h-[650px] md:h-[100vh] max-w-[1600px] mx-auto overflow-hidden">
+      <div className="w-full relative min-h-[580px] sm:min-h-[550px] md:h-[100vh] max-w-[1600px] mx-auto overflow-hidden">
         
         {/* ================= BACKGROUND IMAGE LAYER ================= */}
         <div className="absolute inset-0 w-full h-full bg-black">
