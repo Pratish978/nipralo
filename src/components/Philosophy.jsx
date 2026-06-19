@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Philosophy() {
   return (
-    <section className="w-full bg-[#4A5D6E] relative py-12 px-6 overflow-hidden">
+    <section className="w-full bg-[#4A5D6E] relative py-15 md:py-15 px-6 overflow-hidden">
       
       {/* ================= BACKGROUND TOPOGRAPHY LINES LAYER ================= */}
       <div className="absolute inset-0 w-full h-full opacity-[0.07] pointer-events-none select-none">
@@ -17,18 +17,18 @@ export default function Philosophy() {
       {/* ================= CONTENT CONTAINER ================= */}
       <div className="max-w-[950px] mx-auto flex flex-col items-center justify-center text-center relative z-10">
         
-        <h2 className="text-[#E96125] text-[28px] sm:text-[32px] md:text-[36px] font-bold tracking-normal mb-4">
+        <h2 className="text-[#E96125] text-[30px] sm:text-[32px] md:text-[50px] font-bold tracking-normal mb-6">
           Our Philosophy
         </h2>
 
-        <p className="text-white text-[14px] sm:text-[15px] md:text-[16px] leading-[1.7] font-normal opacity-95 max-w-[860px] mb-6 tracking-wide">
+        <p className="text-white text-[16px] sm:text-[15px] md:text-[16px] leading-[1.8] font-normal opacity-95 max-w-[860px] mb-10 tracking-wide">
           Customer satisfaction drives everything we do. Every shipment is a promise, and we deliver it with precision, care, and professionalism. With expert resources, we ensure safe, timely transport, building lasting partnerships founded on trust and excellence.
         </p>
 
-        <button className="group relative bg-[#E96125] hover:bg-[#d1d5db] text-white hover:text-black font-semibold text-[14px] px-8 py-2.5 rounded-xl shadow-sm transition-colors duration-300 ease-in-out tracking-wide w-[130px] h-[42px] flex items-center justify-center overflow-hidden">
-          <span className="block group-hover:hidden">Read more</span>
-          <span className="hidden group-hover:block">lets go</span>
-        </button>
+<button className="group relative bg-[#E96125] hover:bg-[#d1d5db] text-white hover:text-black font-semibold text-[14px] px-8 py-2.5 rounded-xl shadow-sm transition-all duration-500 ease-in-out tracking-wide w-[130px] h-[42px] flex items-center justify-center overflow-hidden">
+  <span className="absolute transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-[-10px] opacity-100 translate-y-0">Read more</span>
+  <span className="absolute transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 opacity-0 translate-y-[10px]">lets go</span>
+</button>
 
       </div>
     </section>
