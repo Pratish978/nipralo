@@ -2,22 +2,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 // Replace these imports with your actual file paths for 16 images
-import award1 from '../assets/award1.png';
-import award2 from '../assets/award2.png';
-import award3 from '../assets/award3.png';
-import award4 from '../assets/award4.png';
-import award5 from '../assets/award5.png';
-import award6 from '../assets/award6.png';
-import award7 from '../assets/award7.png';
-import award8 from '../assets/award8.png';
-import award9 from '../assets/award9.png';
-import award10 from '../assets/award10.png';
-import award11 from '../assets/award11.png';
-import award12 from '../assets/award12.png';
-import award13 from '../assets/award13.png';
-import award14 from '../assets/award14.png';
-import award15 from '../assets/award15.png';
-import award16 from '../assets/award16.png';
+import award1 from '../assets/Award1.png';
+import award2 from '../assets/Award2.png';
+import award3 from '../assets/Award3.png';
+import award4 from '../assets/Award4.png';
+import award5 from '../assets/Award5.png';
+import award6 from '../assets/Award6.png';
+import award7 from '../assets/Award7.png';
+import award8 from '../assets/Award8.png';
+import award9 from '../assets/Award9.png';
+import award10 from '../assets/Award10.png';
+import award11 from '../assets/Award11.png';
+import award12 from '../assets/Award12.png';
+import award13 from '../assets/Award13.png';
+import award14 from '../assets/Award14.png';
+import award15 from '../assets/Award15.png';
+import award16 from '../assets/Award16.png';
 
 const awardsData = [
   { id: 1, img: award1, title: "Top Cargo Agent, 2016/17" },
