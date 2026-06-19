@@ -5,6 +5,8 @@ import About from './components/About'
 import Philosophy from './components/Philosophy'
 import ServicesShowcase from './components/ServicesShowcase'
 import WhyChoosePenta from './components/WhyChoosePenta'
+import OurAchievements from './components/OurAchievements'
+import TestimonialsShowcase from './components/TestimonialsShowcase'
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
     <Philosophy/>
     <ServicesShowcase/>
     <WhyChoosePenta/>
+    <OurAchievements/>
+    <TestimonialsShowcase/>
     </>
   )
 }
