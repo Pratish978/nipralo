@@ -3,7 +3,7 @@ import pentaVideo from '../assets/penta.mp4';
 
 export default function Hero() {
   return (
-    <div className="relative w-full h-[260px] sm:h-[320px] md:h-[85vh] lg:h-[90vh] bg-black overflow-hidden flex items-center">
+    <div className="relative w-full h-65 sm:h-80 md:h-[85vh] lg:h-[100vh] bg-black overflow-hidden flex items-center">
       <video
         autoPlay
         loop
@@ -17,7 +17,7 @@ export default function Hero() {
       </video>
 
       {/* Optional Gradient overlay jo desktop view me layout texts ko stand-out karega */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none md:block hidden" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent pointer-events-none md:block hidden" />
     </div>
   );
 }

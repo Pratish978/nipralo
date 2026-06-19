@@ -5,7 +5,37 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showKuhlDropdown, setShowKuhlDropdown] = useState(false);
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
+  
+  // Dynamic Scroll Handling States
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  
   const dropdownRef = useRef(null);
+
+  // Scroll logic configuration block
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Agar navbar mobile drawer open hai toh hide mat karna
+      if (isOpen) return;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Niche scroll karne par: Hide Navbar
+        setIsVisible(false);
+        // Niche jaate hi saare open dropdowns bhi close kar do safety ke liye
+        setShowKuhlDropdown(false);
+      } else {
+        // Upar scroll karne par: Reveal Navbar
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, isOpen]);
 
   // Mobile drawer open hone par window scroll lock karne ke liye hook
   useEffect(() => {
@@ -28,11 +58,17 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="w-full bg-white sticky top-0 z-40 px-6 md:px-8 pt-5 pb-5 select-none border-b border-gray-100/50">
+    /* 
+      Yahan transition utility classes insert ki hain:
+      - transform position shifts perfectly smoothly based on boolean `isVisible`.
+      - dynamic visibility controls applied via `translate-y-0` and `-translate-y-full`.
+    */
+    <nav className={`w-full bg-white fixed top-0 z-40 px-6 md:px-8 pt-5 pb-5 select-none border-b border-gray-100/50 transition-transform duration-300 ease-in-out ${
+      isVisible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
       <div className="w-full flex justify-between items-center relative max-w-350 mx-auto">
         
         {/* ================= MOBILE VIEW BRANDING / CONTACT PILL ================= */}
-        {/* Hamburger closed ya open ho, ye button screen ke left side par hamesha fixed orange text me block ban kar dikhega */}
         <div className="md:hidden block">
           <a 
             href="#contact" 
@@ -42,7 +78,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Desktop Logo Spacer (Only shows on screen devices >= 768px) */}
+        {/* Desktop Logo Spacer */}
         <div className="hidden md:block absolute left-0 shrink-0">
           <div className="w-6 h-4"></div>
         </div>
@@ -102,7 +138,6 @@ export default function Navbar() {
         </div>
 
         {/* ================= MOBILE HAMBURGER BUTTON ================= */}
-        {/* Right side alignment toggle tool */}
         <div className="md:hidden flex items-center">
           <button 
             onClick={() => setIsOpen(true)} 
@@ -120,7 +155,6 @@ export default function Navbar() {
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        {/* Internal Top Control Block */}
         <div className="flex justify-between items-center px-6 pt-5 pb-4 bg-white border-b border-gray-100/40">
           <a 
             href="#contact" 
@@ -129,7 +163,6 @@ export default function Navbar() {
           >
             Contact
           </a>
-          {/* Right Aligned X Icon to Close Side Drawer Panel */}
           <button 
             onClick={() => setIsOpen(false)} 
             className="text-black focus:outline-none p-1 block"
@@ -144,7 +177,7 @@ export default function Navbar() {
           <a 
             href="/" 
             onClick={() => setIsOpen(false)} 
-            className="text-[#E96125] border-b border-gray-100/70 px-6 py-4.5 transition-colors block animate-fade-in"
+            className="text-[#E96125] border-b border-gray-100/70 px-6 py-4.5 transition-colors block"
           >
             HOME
           </a>
@@ -219,7 +252,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Footer Contact Info Segment block exactly like image_587fbc.png */}
+        {/* Footer Contact Info Segment */}
         <div className="mt-auto px-6 pt-10 pb-8 bg-white border-t border-gray-50">
           <h3 className="text-black font-bold text-[16px] mb-2.5 tracking-wide">Contact Info</h3>
           <a href="tel:+912262226222" className="text-[#E96125] text-[14px] font-semibold block mb-2 underline underline-offset-4 decoration-1">
