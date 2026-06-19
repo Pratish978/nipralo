@@ -94,10 +94,10 @@ export default function Navbar() {
           <a href="#contact" className="px-4 py-2 border-b border-gray-300">CONTACT</a>
         </div>
 
-        <div className="mt-15 px-6">
+        <div className="mt-10 px-6">
           <h3 className="font-bold text-[18px] mb-3">Contact Info</h3>
-          <a href="tel:+912262226222" className="block  font-semibold mb-3 underline">+91 22-6222-6222</a>
-          <p className="text-[14px] text-gray-700 leading-relaxed max-w-[280px] underline">
+          <a href="tel:+912262226222" className="block text-[#ef6930] font-semibold mb-3">+91 22-6222-6222</a>
+          <p className="text-[14px] text-gray-700 leading-relaxed max-w-[280px]">
             902, 'A' Wing, Times Square, Andheri-Kurla Road, Marol, Andheri (East), Mumbai 400 059
           </p>
         </div>

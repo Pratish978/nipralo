@@ -11,7 +11,7 @@ import CertificationShowcase from './components/CertificationShowcase'
 import { Award } from 'lucide-react'
 import AwardsSection from './components/AwardsSection'
 import GlobalFootprint from './components/GlobalFootprint'
-import Testimonial from './components/TestimonialsShowcase'
+import TestimonialsShowcase from './components/TestimonialsShowcase'
 
 export default function App() {
   return (
@@ -23,7 +23,7 @@ export default function App() {
     <ServicesShowcase/>
     <WhyChoosePenta/>
     <OurAchievements/>
-    <Testimonial/>
+    <TestimonialsShowcase/>
     <CertificationShowcase/>
     <AwardsSection/>
     <GlobalFootprint/>
