@@ -7,6 +7,7 @@ import ServicesShowcase from './components/ServicesShowcase'
 import WhyChoosePenta from './components/WhyChoosePenta'
 import OurAchievements from './components/OurAchievements'
 import TestimonialsShowcase from './components/TestimonialsShowcase'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
     <WhyChoosePenta/>
     <OurAchievements/>
     <TestimonialsShowcase/>
+    <Footer/>
     </>
   )
 }
