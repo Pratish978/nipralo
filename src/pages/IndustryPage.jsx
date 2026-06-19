@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Pill,
   FlaskConical,
@@ -11,6 +11,40 @@ import {
   Smartphone,
   ChevronDown,
 } from "lucide-react";
+
+// Scattered start offsets so each card drifts in from a slightly
+// different direction/distance, like the original page's reveal.
+const cardOffsets = [
+  { x: -60, y: 50, r: -6 },
+  { x: 50, y: -70, r: 5 },
+  { x: -40, y: -60, r: -4 },
+  { x: 70, y: 40, r: 6 },
+  { x: -70, y: -30, r: -5 },
+  { x: 40, y: 70, r: 4 },
+  { x: -50, y: 60, r: 5 },
+  { x: 60, y: -40, r: -6 },
+  { x: -30, y: -70, r: 4 },
+];
+
+function useInView(options) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true);
+        observer.disconnect();
+      }
+    }, options);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [options]);
+
+  return [ref, inView];
+}
 
 const industries = [
   {
@@ -92,16 +126,24 @@ const faqs = [
   },
 ];
 
-function IndustryCard({ icon: Icon, title, description }) {
+function IndustryCard({ icon: Icon, title, description, offset, inView, delay }) {
   return (
     <div
       className="rounded-2xl p-8 h-full flex flex-col"
       style={{
         background: "linear-gradient(135deg, #f0916a 0%, #e8703f 100%)",
+        opacity: inView ? 1 : 0,
+        transform: inView
+          ? "translate(0, 0) rotate(0deg) scale(1)"
+          : `translate(${offset.x}px, ${offset.y}px) rotate(${offset.r}deg) scale(0.92)`,
+        transition:
+          "opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+        transitionDelay: `${delay}ms`,
+        boxShadow: "0 10px 30px -10px rgba(216, 90, 48, 0.45)",
       }}
     >
       <div
-        className="w-16 h-16 rounded-full flex items-center justify-center mb-5 flex-shrink-0"
+        className="w-16 h-16 rounded-full flex items-center justify-center mb-5 flex-shrink-0 transition-transform duration-300 hover:scale-110 hover:rotate-6"
         style={{ backgroundColor: "rgba(255,255,255,0.18)" }}
       >
         <Icon size={28} color="#ffffff" strokeWidth={1.75} />
@@ -142,11 +184,23 @@ function FaqItem({ question, answer, isOpen, onToggle }) {
 export default function IndustriesPage() {
   const [openFaq, setOpenFaq] = useState(0);
 
+  const [headerRef, headerInView] = useInView({ threshold: 0.3 });
+  const [gridRef, gridInView] = useInView({ threshold: 0.1 });
+  const [faqRef, faqInView] = useInView({ threshold: 0.2 });
+  const [ctaRef, ctaInView] = useInView({ threshold: 0.15 });
+
   return (
-    <div className="bg-white w-full">
+    <div className="bg-white w-full overflow-x-hidden">
       {/* Industries Section */}
       <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className="text-center mb-16 transition-all duration-700"
+          style={{
+            opacity: headerInView ? 1 : 0,
+            transform: headerInView ? "translateY(0)" : "translateY(24px)",
+          }}
+        >
           <h2 className="text-4xl md:text-5xl font-light tracking-wide text-gray-500 mb-6">
             INDUSTRIES
           </h2>
@@ -156,17 +210,35 @@ export default function IndustriesPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map((ind) => (
-            <IndustryCard key={ind.title} {...ind} />
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {industries.map((ind, i) => (
+            <IndustryCard
+              key={ind.title}
+              {...ind}
+              offset={cardOffsets[i % cardOffsets.length]}
+              inView={gridInView}
+              delay={i * 90}
+            />
           ))}
         </div>
       </section>
 
       {/* FAQ Section */}
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+        <div
+          ref={faqRef}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+        >
+          <div
+            className="transition-all duration-700"
+            style={{
+              opacity: faqInView ? 1 : 0,
+              transform: faqInView ? "translateX(0)" : "translateX(-24px)",
+            }}
+          >
             <h2 className="text-3xl md:text-4xl font-medium mb-4">
               <span className="text-gray-900">Frequently Asked</span>{" "}
               <span className="text-gray-400">Questions</span>
@@ -180,13 +252,22 @@ export default function IndustriesPage() {
           <div>
             <div className="border-t border-gray-200">
               {faqs.map((faq, i) => (
-                <FaqItem
+                <div
                   key={faq.question}
-                  question={faq.question}
-                  answer={faq.answer}
-                  isOpen={openFaq === i}
-                  onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}
-                />
+                  className="transition-all duration-700"
+                  style={{
+                    opacity: faqInView ? 1 : 0,
+                    transform: faqInView ? "translateY(0)" : "translateY(18px)",
+                    transitionDelay: `${150 + i * 100}ms`,
+                  }}
+                >
+                  <FaqItem
+                    question={faq.question}
+                    answer={faq.answer}
+                    isOpen={openFaq === i}
+                    onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -194,33 +275,48 @@ export default function IndustriesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-28 px-6">
+      <section ref={ctaRef} className="relative py-28 px-6 overflow-hidden">
         <div className="absolute inset-0 grid grid-cols-3">
           <div
-            className="bg-cover bg-center"
+            className="bg-cover bg-center transition-all duration-[900ms] ease-out"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80')",
+              transform: ctaInView ? "scale(1)" : "scale(1.25)",
+              opacity: ctaInView ? 1 : 0,
             }}
           />
           <div
-            className="bg-cover bg-center"
+            className="bg-cover bg-center transition-all duration-[900ms] ease-out"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80')",
+              transform: ctaInView ? "scale(1)" : "scale(1.25)",
+              opacity: ctaInView ? 1 : 0,
+              transitionDelay: "120ms",
             }}
           />
           <div
-            className="bg-cover bg-center"
+            className="bg-cover bg-center transition-all duration-[900ms] ease-out"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&q=80')",
+              transform: ctaInView ? "scale(1)" : "scale(1.25)",
+              opacity: ctaInView ? 1 : 0,
+              transitionDelay: "240ms",
             }}
           />
           <div className="absolute inset-0 bg-black/55" />
         </div>
 
-        <div className="relative max-w-3xl mx-auto text-center">
+        <div
+          className="relative max-w-3xl mx-auto text-center transition-all duration-700"
+          style={{
+            opacity: ctaInView ? 1 : 0,
+            transform: ctaInView ? "translateY(0)" : "translateY(30px)",
+            transitionDelay: "300ms",
+          }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Tailored Logistics for Every Industry
           </h2>
@@ -229,7 +325,7 @@ export default function IndustriesPage() {
             needs of industries worldwide.
           </p>
           <button
-            className="px-7 py-3 rounded-md font-semibold text-white transition-transform hover:scale-105"
+            className="px-7 py-3 rounded-md font-semibold text-white transition-transform duration-300 hover:scale-105 active:scale-95"
             style={{
               background: "linear-gradient(135deg, #f0916a 0%, #e8703f 100%)",
             }}
