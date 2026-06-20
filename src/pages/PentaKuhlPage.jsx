@@ -5,63 +5,401 @@ const DARK_SLATE = "#4B5A66";
 const TEXT_DARK = "#222222";
 const TEXT_MUTED = "#6b7280";
 
+/* ---------------- Global responsive styles ---------------- */
+
+function PageStyles() {
+  return (
+    <style>{`
+      .pk-page * { box-sizing: border-box; }
+      .pk-page { font-family: "Segoe UI", Arial, sans-serif; color: ${TEXT_DARK}; overflow-x: hidden; }
+
+      /* ---- Hero ---- */
+      .pk-hero {
+        position: relative;
+        width: 100%;
+        min-height: 620px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        background: #1c1f22;
+      }
+      .pk-hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.55;
+      }
+      .pk-hero-inner {
+        position: relative;
+        z-index: 1;
+        padding: 120px 64px 56px;
+        max-width: 1100px;
+      }
+      .pk-hero-title {
+        color: #fff;
+        font-size: 44px;
+        font-weight: 500;
+        line-height: 1.25;
+        margin: 0 0 28px;
+      }
+      .pk-hero-bottom {
+        border-top: 1px solid rgba(255,255,255,0.4);
+        padding-top: 24px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .pk-hero-sub {
+        color: #f1f1f1;
+        font-size: 17px;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 560px;
+      }
+
+      /* ---- Buttons ---- */
+      .pk-btn {
+        background: ${ORANGE};
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 14px 28px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* ---- Eyebrow ---- */
+      .pk-eyebrow { margin-bottom: 24px; }
+      .pk-eyebrow p {
+        color: ${ORANGE};
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin: 0;
+      }
+      .pk-eyebrow-line {
+        width: 60px;
+        height: 2px;
+        background: ${ORANGE};
+        margin: 8px 0;
+      }
+
+      /* ---- About ---- */
+      .pk-about {
+        padding: 64px 64px;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .pk-about p {
+        font-size: 19px;
+        line-height: 1.6;
+        color: ${TEXT_DARK};
+        margin: 0;
+        max-width: 720px;
+      }
+
+      /* ---- Distributor banner ---- */
+      .pk-distributor {
+        background: ${DARK_SLATE};
+        padding: 72px 24px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .pk-distributor-card {
+        background: #fff;
+        width: 248px;
+        height: 200px;
+        border-radius: 8px;
+        margin: 0 auto 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pk-distributor h2 {
+        color: #fff;
+        font-weight: 500;
+        font-size: 26px;
+        margin: 0 0 24px;
+      }
+
+      /* ---- Product Solutions ---- */
+      .pk-solutions { padding: 72px 64px; }
+      .pk-solutions h2 {
+        text-align: center;
+        font-size: 38px;
+        font-weight: 400;
+        margin: 0 0 48px;
+        color: ${TEXT_DARK};
+      }
+      .pk-solutions-grid {
+        display: flex;
+        gap: 0;
+        flex-wrap: wrap;
+      }
+      .pk-solution-card {
+        border: 1px solid #e8e8e8;
+        padding: 40px;
+        flex: 1;
+        min-width: 320px;
+      }
+      .pk-solution-card h3 {
+        font-size: 34px;
+        font-weight: 400;
+        margin: 0 0 16px;
+        color: ${TEXT_DARK};
+      }
+      .pk-solution-card > p {
+        color: ${TEXT_MUTED};
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 0 0 28px;
+      }
+      .pk-solution-row {
+        display: flex;
+        align-items: center;
+        border: 1px solid #eee;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+      }
+      .pk-solution-row-label {
+        font-weight: 700;
+        font-size: 18px;
+        padding: 20px 24px;
+        border-right: 1px solid #eee;
+        min-width: 140px;
+      }
+      .pk-solution-row-item {
+        flex: 1;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: #444;
+        padding: 12px 8px;
+        border-right: 1px solid #eee;
+        min-width: 120px;
+      }
+
+      /* ---- Series Guide ---- */
+      .pk-series { padding: 72px 64px; text-align: center; }
+      .pk-series h2 { font-size: 34px; font-weight: 400; margin: 0 0 16px; }
+      .pk-series-desc {
+        color: ${TEXT_MUTED};
+        max-width: 760px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+      }
+      .pk-series-tabs {
+        display: flex;
+        border: 1px solid #eee;
+        margin-bottom: 0;
+        flex-wrap: wrap;
+      }
+      .pk-series-tab {
+        flex: 1;
+        padding: 18px 0;
+        background: transparent;
+        border: none;
+        border-right: 1px solid #eee;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        color: ${TEXT_DARK};
+        min-width: 120px;
+      }
+      .pk-series-tab.active { color: ${ORANGE}; }
+      .pk-series-panel {
+        border: 1px solid #eee;
+        border-top: none;
+        text-align: left;
+        padding: 32px;
+      }
+      .pk-series-panel p { margin: 0 0 12px; }
+      .pk-series-panel p:last-child { margin: 0; }
+
+      /* ---- Marquee ---- */
+      .pk-marquee {
+        display: flex;
+        overflow: hidden;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+      }
+      .pk-marquee-track { display: flex; }
+      .pk-marquee-item {
+        padding: 28px 56px;
+        border-right: 1px solid #eee;
+        font-weight: 700;
+        font-size: 18px;
+        white-space: nowrap;
+        color: ${TEXT_DARK};
+      }
+      .pk-marquee-left .pk-marquee-track { animation: marqueeLeft 30s linear infinite; }
+      .pk-marquee-right .pk-marquee-track { animation: marqueeRight 30s linear infinite; }
+      @keyframes marqueeLeft {
+        from { transform: translateX(0); }
+        to { transform: translateX(-33.333%); }
+      }
+      @keyframes marqueeRight {
+        from { transform: translateX(-33.333%); }
+        to { transform: translateX(0); }
+      }
+
+      /* ---- FAQ ---- */
+      .pk-faq {
+        padding: 72px 64px;
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 48px;
+      }
+      .pk-faq h2 { font-size: 32px; font-weight: 400; margin: 0 0 16px; }
+      .pk-faq-intro p { color: ${TEXT_MUTED}; line-height: 1.6; max-width: 360px; margin: 0; }
+      .pk-faq-list { border-top: 1px solid #eee; }
+      .pk-faq-item { border-bottom: 1px solid #eee; }
+      .pk-faq-question {
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        text-align: left;
+      }
+      .pk-faq-question span:first-child { font-weight: 700; font-size: 16px; color: ${TEXT_DARK}; }
+      .pk-faq-question span:last-child { color: #888; }
+      .pk-faq-answer {
+        color: ${TEXT_MUTED};
+        line-height: 1.6;
+        margin: 0 0 20px;
+        padding-right: 32px;
+      }
+
+      /* ---- Contact CTA ---- */
+      .pk-contact {
+        position: relative;
+        padding: 100px 24px;
+        text-align: center;
+        color: #fff;
+        background-image: linear-gradient(rgba(20,20,20,0.55), rgba(20,20,20,0.55)),
+          url('https://images.unsplash.com/photo-1601583863999-65b8c3b3b9b8?q=80&w=1600&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+      }
+      .pk-contact h2 { font-size: 36px; font-weight: 700; margin: 0 0 16px; }
+      .pk-contact p { font-size: 17px; margin: 0 0 32px; }
+
+      /* =====================================================
+         RESPONSIVE BREAKPOINTS
+      ===================================================== */
+
+      /* Tablet */
+      @media (max-width: 900px) {
+        .pk-hero-inner { padding: 90px 40px 40px; }
+        .pk-hero-title { font-size: 34px; }
+        .pk-about,
+        .pk-solutions,
+        .pk-series,
+        .pk-faq { padding: 56px 40px; }
+        .pk-about { grid-template-columns: 1fr; gap: 16px; }
+        .pk-faq { grid-template-columns: 1fr; gap: 24px; }
+        .pk-solution-card { min-width: 280px; }
+        .pk-marquee-item { padding: 22px 36px; font-size: 16px; }
+      }
+
+      /* Mobile */
+      @media (max-width: 600px) {
+        .pk-hero { min-height: 480px; }
+        .pk-hero-inner { padding: 64px 20px 28px; max-width: 100%; }
+        .pk-hero-title { font-size: 26px; margin-bottom: 18px; }
+        .pk-hero-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+        .pk-hero-sub { font-size: 15px; max-width: 100%; }
+
+        .pk-about,
+        .pk-distributor,
+        .pk-solutions,
+        .pk-series,
+        .pk-faq,
+        .pk-contact { padding: 40px 20px; }
+
+        .pk-about p { font-size: 16px; }
+
+        .pk-distributor-card { width: 200px; height: 160px; }
+        .pk-distributor h2 { font-size: 20px; }
+
+        .pk-solutions h2 { font-size: 28px; margin-bottom: 32px; }
+        .pk-solutions-grid { flex-direction: column; }
+        .pk-solution-card { min-width: 100%; padding: 28px; }
+        .pk-solution-card h3 { font-size: 26px; }
+        .pk-solution-row { flex-direction: column; align-items: stretch; }
+        .pk-solution-row-label {
+          border-right: none;
+          border-bottom: 1px solid #eee;
+          min-width: 0;
+        }
+        .pk-solution-row-item { border-right: none; border-bottom: 1px solid #eee; }
+        .pk-solution-row-item:last-child { border-bottom: none; }
+
+        .pk-series h2 { font-size: 26px; }
+        .pk-series-tabs { flex-direction: column; }
+        .pk-series-tab {
+          border-right: none;
+          border-bottom: 1px solid #eee;
+          min-width: 0;
+        }
+        .pk-series-tab:last-child { border-bottom: none; }
+        .pk-series-panel { padding: 22px; }
+
+        .pk-marquee-item { padding: 16px 24px; font-size: 14px; }
+
+        .pk-faq h2 { font-size: 26px; }
+        .pk-faq-question span:first-child { font-size: 15px; }
+        .pk-faq-answer { padding-right: 8px; }
+
+        .pk-contact h2 { font-size: 26px; }
+        .pk-contact p { font-size: 15px; }
+
+        .pk-btn { padding: 12px 22px; font-size: 14px; }
+      }
+
+      /* Respect reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .pk-marquee-left .pk-marquee-track,
+        .pk-marquee-right .pk-marquee-track {
+          animation: none;
+        }
+      }
+    `}</style>
+  );
+}
+
 /* ---------------- Reusable bits ---------------- */
 
 function SectionEyebrow({ children }) {
   return (
-    <div style={{ marginBottom: 24 }}>
-      <p
-        style={{
-          color: ORANGE,
-          fontWeight: 700,
-          fontSize: 14,
-          letterSpacing: 1,
-          margin: 0,
-        }}
-      >
-        {children[0]}
-      </p>
-      <div
-        style={{
-          width: 60,
-          height: 2,
-          background: ORANGE,
-          margin: "8px 0",
-        }}
-      />
-      <p
-        style={{
-          color: ORANGE,
-          fontWeight: 700,
-          fontSize: 14,
-          letterSpacing: 1,
-          margin: 0,
-        }}
-      >
-        {children[1]}
-      </p>
+    <div className="pk-eyebrow">
+      <p>{children[0]}</p>
+      <div className="pk-eyebrow-line" />
+      <p>{children[1]}</p>
     </div>
   );
 }
 
-function PrimaryButton({ children, style }) {
+function PrimaryButton({ children, className = "", ...rest }) {
   return (
-    <button
-      style={{
-        background: ORANGE,
-        color: "#fff",
-        border: "none",
-        borderRadius: 6,
-        padding: "14px 28px",
-        fontWeight: 700,
-        fontSize: 15,
-        cursor: "pointer",
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 8,
-        ...style,
-      }}
-    >
+    <button className={`pk-btn ${className}`} {...rest}>
       {children}
     </button>
   );
@@ -71,73 +409,21 @@ function PrimaryButton({ children, style }) {
 
 function VideoHero() {
   return (
-    <section
-      style={{
-        position: "relative",
-        width: "100%",
-        minHeight: 620,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        overflow: "hidden",
-        background: "#1c1f22",
-      }}
-    >
+    <section className="pk-hero">
       <video
+        className="pk-hero-video"
         src="/pentakulvid.mp4"
         autoPlay
         muted
         loop
         playsInline
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          opacity: 0.55,
-        }}
       />
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          padding: "120px 64px 56px",
-          maxWidth: 1100,
-        }}
-      >
-        <h1
-          style={{
-            color: "#fff",
-            fontSize: 44,
-            fontWeight: 500,
-            lineHeight: 1.25,
-            margin: 0,
-            marginBottom: 28,
-          }}
-        >
+      <div className="pk-hero-inner">
+        <h1 className="pk-hero-title">
           Ensuring Safe Transport for Temperature-Sensitive Products
         </h1>
-        <div
-          style={{
-            borderTop: "1px solid rgba(255,255,255,0.4)",
-            paddingTop: 24,
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 24,
-          }}
-        >
-          <p
-            style={{
-              color: "#f1f1f1",
-              fontSize: 17,
-              lineHeight: 1.5,
-              margin: 0,
-              maxWidth: 560,
-            }}
-          >
+        <div className="pk-hero-bottom">
+          <p className="pk-hero-sub">
             Explore our frequently asked questions to gain clarity about
             Penta Kuhl&rsquo;s services and features
           </p>
@@ -154,25 +440,9 @@ function VideoHero() {
 
 function AboutSection() {
   return (
-    <section
-      style={{
-        padding: "64px 64px",
-        display: "grid",
-        gridTemplateColumns: "260px 1fr",
-        gap: 40,
-        alignItems: "start",
-      }}
-    >
+    <section className="pk-about">
       <SectionEyebrow>{["ABOUT", "PENTA KUHL"]}</SectionEyebrow>
-      <p
-        style={{
-          fontSize: 19,
-          lineHeight: 1.6,
-          color: TEXT_DARK,
-          margin: 0,
-          maxWidth: 720,
-        }}
-      >
+      <p>
         At <strong>Pentakuhl</strong>, we specialize in providing durable,
         effective packaging solutions that maintain temperature{" "}
         <strong>stability</strong> during transit, <strong>protecting</strong>{" "}
@@ -187,27 +457,8 @@ function AboutSection() {
 
 function DistributorBanner() {
   return (
-    <section
-      style={{
-        background: DARK_SLATE,
-        padding: "72px 24px",
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          background: "#fff",
-          width: 248,
-          height: 200,
-          borderRadius: 8,
-          margin: "0 auto 32px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+    <section className="pk-distributor">
+      <div className="pk-distributor-card">
         <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: 40 }}>❄️</div>
           <p style={{ color: ORANGE, fontWeight: 700, margin: "4px 0 0", fontSize: 13 }}>
@@ -218,14 +469,7 @@ function DistributorBanner() {
           </p>
         </div>
       </div>
-      <h2
-        style={{
-          color: "#fff",
-          fontWeight: 500,
-          fontSize: 26,
-          margin: "0 0 24px",
-        }}
-      >
+      <h2>
         Authorized Distributors for Pelican BioThermal<sup>tm</sup> Products
       </h2>
       <PrimaryButton>Read more</PrimaryButton>
@@ -260,54 +504,14 @@ const SOLUTIONS = [
 
 function SolutionCard({ data }) {
   return (
-    <div
-      style={{
-        border: "1px solid #e8e8e8",
-        padding: 40,
-        flex: 1,
-        minWidth: 320,
-      }}
-    >
-      <h3 style={{ fontSize: 34, fontWeight: 400, margin: "0 0 16px", color: TEXT_DARK }}>
-        {data.title}
-      </h3>
-      <p style={{ color: TEXT_MUTED, fontSize: 15, lineHeight: 1.6, margin: "0 0 28px" }}>
-        {data.blurb}
-      </p>
+    <div className="pk-solution-card">
+      <h3>{data.title}</h3>
+      <p>{data.blurb}</p>
       {data.rows.map((row) => (
-        <div
-          key={row.label}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            border: "1px solid #eee",
-            marginBottom: 12,
-          }}
-        >
-          <span
-            style={{
-              fontWeight: 700,
-              fontSize: 18,
-              padding: "20px 24px",
-              borderRight: "1px solid #eee",
-              minWidth: 140,
-            }}
-          >
-            {row.label}
-          </span>
+        <div className="pk-solution-row" key={row.label}>
+          <span className="pk-solution-row-label">{row.label}</span>
           {row.items.map((item) => (
-            <span
-              key={item}
-              style={{
-                flex: 1,
-                textAlign: "center",
-                fontSize: 13,
-                fontWeight: 600,
-                color: "#444",
-                padding: "12px 8px",
-                borderRight: "1px solid #eee",
-              }}
-            >
+            <span className="pk-solution-row-item" key={item}>
               {item}
             </span>
           ))}
@@ -320,19 +524,9 @@ function SolutionCard({ data }) {
 
 function ProductSolutions() {
   return (
-    <section style={{ padding: "72px 64px" }}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: 38,
-          fontWeight: 400,
-          margin: "0 0 48px",
-          color: TEXT_DARK,
-        }}
-      >
-        Product Solutions
-      </h2>
-      <div style={{ display: "flex", gap: 0, flexWrap: "wrap" }}>
+    <section className="pk-solutions">
+      <h2>Product Solutions</h2>
+      <div className="pk-solutions-grid">
         {SOLUTIONS.map((s) => (
           <SolutionCard key={s.title} data={s} />
         ))}
@@ -371,68 +565,37 @@ function SeriesGuide() {
   const current = SERIES[active];
 
   return (
-    <section style={{ padding: "72px 64px", textAlign: "center" }}>
-      <h2 style={{ fontSize: 34, fontWeight: 400, margin: "0 0 16px" }}>
+    <section className="pk-series">
+      <h2>
         Series <span style={{ color: "#9aa0a6" }}>Guide</span>
       </h2>
-      <p
-        style={{
-          color: TEXT_MUTED,
-          maxWidth: 760,
-          margin: "0 auto 40px",
-          lineHeight: 1.6,
-        }}
-      >
+      <p className="pk-series-desc">
         This guide outlines temperature-controlled packaging solutions
         designed for the safe transport and storage of sensitive products,
         like vaccines and biologics, across various thermal conditions, from
         refrigerated to deep-freeze.
       </p>
 
-      <div
-        style={{
-          display: "flex",
-          border: "1px solid #eee",
-          marginBottom: 0,
-        }}
-      >
+      <div className="pk-series-tabs">
         {Object.keys(SERIES).map((key) => (
           <button
             key={key}
             onClick={() => setActive(key)}
-            style={{
-              flex: 1,
-              padding: "18px 0",
-              background: "transparent",
-              border: "none",
-              borderRight: "1px solid #eee",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: 14,
-              letterSpacing: 0.5,
-              color: active === key ? ORANGE : TEXT_DARK,
-            }}
+            className={`pk-series-tab ${active === key ? "active" : ""}`}
           >
             {key}
           </button>
         ))}
       </div>
 
-      <div
-        style={{
-          border: "1px solid #eee",
-          borderTop: "none",
-          textAlign: "left",
-          padding: 32,
-        }}
-      >
-        <p style={{ margin: "0 0 12px" }}>
+      <div className="pk-series-panel">
+        <p>
           <strong>Temperature Range:</strong> {current.temp}
         </p>
-        <p style={{ margin: "0 0 12px" }}>
+        <p>
           <strong>Usage &amp; Applications:</strong> {current.usage}
         </p>
-        <p style={{ margin: 0 }}>
+        <p>
           <strong>Ideal For:</strong> {current.idealFor}
         </p>
       </div>
@@ -445,46 +608,14 @@ function SeriesGuide() {
 function Marquee({ items, direction = "left" }) {
   const track = [...items, ...items, ...items];
   return (
-    <div
-      style={{
-        display: "flex",
-        overflow: "hidden",
-        borderTop: "1px solid #eee",
-        borderBottom: "1px solid #eee",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          animation: `${direction === "left" ? "marqueeLeft" : "marqueeRight"} 30s linear infinite`,
-        }}
-      >
+    <div className={`pk-marquee pk-marquee-${direction}`}>
+      <div className="pk-marquee-track">
         {track.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              padding: "28px 56px",
-              borderRight: "1px solid #eee",
-              fontWeight: 700,
-              fontSize: 18,
-              whiteSpace: "nowrap",
-              color: TEXT_DARK,
-            }}
-          >
+          <div className="pk-marquee-item" key={i}>
             {item}
           </div>
         ))}
       </div>
-      <style>{`
-        @keyframes marqueeLeft {
-          from { transform: translateX(0); }
-          to { transform: translateX(-33.333%); }
-        }
-        @keyframes marqueeRight {
-          from { transform: translateX(-33.333%); }
-          to { transform: translateX(0); }
-        }
-      `}</style>
     </div>
   );
 }
@@ -527,29 +658,12 @@ const FAQS = [
 
 function FaqItem({ item, isOpen, onToggle }) {
   return (
-    <div style={{ borderBottom: "1px solid #eee" }}>
-      <button
-        onClick={onToggle}
-        style={{
-          width: "100%",
-          background: "transparent",
-          border: "none",
-          padding: "20px 0",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          cursor: "pointer",
-          textAlign: "left",
-        }}
-      >
-        <span style={{ fontWeight: 700, fontSize: 16, color: TEXT_DARK }}>{item.q}</span>
-        <span style={{ color: "#888" }}>{isOpen ? "︿" : "⌄"}</span>
+    <div className="pk-faq-item">
+      <button className="pk-faq-question" onClick={onToggle}>
+        <span>{item.q}</span>
+        <span>{isOpen ? "︿" : "⌄"}</span>
       </button>
-      {isOpen && (
-        <p style={{ color: TEXT_MUTED, lineHeight: 1.6, margin: "0 0 20px", paddingRight: 32 }}>
-          {item.a}
-        </p>
-      )}
+      {isOpen && <p className="pk-faq-answer">{item.a}</p>}
     </div>
   );
 }
@@ -557,24 +671,17 @@ function FaqItem({ item, isOpen, onToggle }) {
 function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
   return (
-    <section
-      style={{
-        padding: "72px 64px",
-        display: "grid",
-        gridTemplateColumns: "1fr 1.4fr",
-        gap: 48,
-      }}
-    >
-      <div>
-        <h2 style={{ fontSize: 32, fontWeight: 400, margin: "0 0 16px" }}>
+    <section className="pk-faq">
+      <div className="pk-faq-intro">
+        <h2>
           Frequently Asked <span style={{ color: "#9aa0a6" }}>Questions</span>
         </h2>
-        <p style={{ color: TEXT_MUTED, lineHeight: 1.6, maxWidth: 360, margin: 0 }}>
+        <p>
           Explore our frequently asked questions to gain clarity about Penta
           Kuhl&rsquo;s services and features.
         </p>
       </div>
-      <div style={{ borderTop: "1px solid #eee" }}>
+      <div className="pk-faq-list">
         {FAQS.map((item, i) => (
           <FaqItem
             key={item.q}
@@ -592,24 +699,9 @@ function FaqSection() {
 
 function ContactSection() {
   return (
-    <section
-      style={{
-        position: "relative",
-        padding: "100px 24px",
-        textAlign: "center",
-        color: "#fff",
-        background:
-          "linear-gradient(rgba(20,20,20,0.55), rgba(20,20,20,0.55)), #555 center/cover",
-        backgroundImage:
-          "linear-gradient(rgba(20,20,20,0.55), rgba(20,20,20,0.55)), url('https://images.unsplash.com/photo-1601583863999-65b8c3b3b9b8?q=80&w=1600&auto=format&fit=crop')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <h2 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 16px" }}>
-        Protecting What Matters Most
-      </h2>
-      <p style={{ fontSize: 17, margin: "0 0 32px" }}>
+    <section className="pk-contact">
+      <h2>Protecting What Matters Most</h2>
+      <p>
         Get in touch to ensure safe and temperature-stable transit for your
         sensitive products.
       </p>
@@ -622,7 +714,8 @@ function ContactSection() {
 
 export default function PentaKuhlPage() {
   return (
-    <div style={{ fontFamily: "Segoe UI, Arial, sans-serif", color: TEXT_DARK }}>
+    <div className="pk-page">
+      <PageStyles />
       <VideoHero />
       <AboutSection />
       <DistributorBanner />
