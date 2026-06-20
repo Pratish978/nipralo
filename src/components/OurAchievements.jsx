@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-// Custom lightweight counter hook for smooth interpolation
 function useAnimatedCounter(targetValue, duration = 2000, trigger = false) {
   const [count, setCount] = useState(0);
 
@@ -31,13 +30,13 @@ export default function OurAchievements() {
   const sectionRef = useRef(null);
   const [hasTriggered, setHasTriggered] = useState(false);
 
-  // Intersection Observer hook to detect when component rolls into screen
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setHasTriggered(true);
-          observer.disconnect(); // Fire animation loop sequence only once
+          observer.disconnect(); 
         }
       },
       { threshold: 0.15 }
@@ -50,7 +49,7 @@ export default function OurAchievements() {
     return () => observer.disconnect();
   }, []);
 
-  // Map target numerical limits directly from values in asset container
+
   const officeCount = useAnimatedCounter(7, 1800, hasTriggered);
   const expertCount = useAnimatedCounter(200, 2000, hasTriggered);
   const awardCount = useAnimatedCounter(50, 2200, hasTriggered);
@@ -64,7 +63,7 @@ export default function OurAchievements() {
                           radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02) 0%, transparent 50%)`
       }}
     >
-      {/* Background Topo-lines vector layout feel emulation */}
+
       <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-overlay">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <path d="M-100,100 Q300,50 700,200 T1500,100" fill="none" stroke="white" strokeWidth="1.5" />
@@ -75,7 +74,7 @@ export default function OurAchievements() {
 
       <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-8 relative z-10">
         
-        {/* Left Side Container Frame */}
+
         <div className="w-full lg:w-[40%] text-left">
           <h2 className="text-[#E2622F] text-[32px] sm:text-[38px] font-medium tracking-tight mb-5">
             Our Achievements
@@ -85,10 +84,10 @@ export default function OurAchievements() {
           </p>
         </div>
 
-        {/* Right Side Matrix Frame Panels */}
+
         <div className="w-full lg:w-[55%] grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-12 sm:gap-y-16 text-left pt-2">
           
-          {/* Node Stat Item 1 */}
+
           <div className="flex flex-col items-start">
             <span className="text-white text-[56px] sm:text-[64px] font-light leading-none tracking-tight mb-2 select-none">
               {officeCount}+
@@ -98,7 +97,6 @@ export default function OurAchievements() {
             </span>
           </div>
 
-          {/* Node Stat Item 2 */}
           <div className="flex flex-col items-start">
             <span className="text-white text-[56px] sm:text-[64px] font-light leading-none tracking-tight mb-2 select-none">
               USA
@@ -108,7 +106,7 @@ export default function OurAchievements() {
             </span>
           </div>
 
-          {/* Node Stat Item 3 */}
+
           <div className="flex flex-col items-start">
             <span className="text-white text-[56px] sm:text-[64px] font-light leading-none tracking-tight mb-2 select-none">
               {expertCount}+
@@ -118,7 +116,7 @@ export default function OurAchievements() {
             </span>
           </div>
 
-          {/* Node Stat Item 4 */}
+
           <div className="flex flex-col items-start">
             <span className="text-white text-[56px] sm:text-[64px] font-light leading-none tracking-tight mb-2 select-none">
               {awardCount}+

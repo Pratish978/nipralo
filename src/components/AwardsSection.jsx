@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Replace these imports with your actual file paths for 16 images
+
 import award1 from '../assets/Award1.png';
 import award2 from '../assets/Award2.png';
 import award3 from '../assets/Award3.png';

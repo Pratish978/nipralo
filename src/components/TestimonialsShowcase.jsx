@@ -28,12 +28,11 @@ export default function TestimonialsShowcase() {
     <section className="w-full bg-white py-16 px-6 md:px-24 overflow-hidden">
       <div className="max-w-[1280px] mx-auto grid md:grid-cols-[1fr_1.3fr] gap-10">
         
-        {/* Left Panel */}
+
         <div className="md:sticky md:top-24 h-fit">
           <h2 className="text-[34px] md:text-[40px] leading-tight mb-4">Hear From Our Satisfied<br/><span className="text-gray-400">Clients Worldwide.</span></h2>
         </div>
 
-        {/* Desktop Vertical Columns */}
         <div className="hidden md:grid grid-cols-2 gap-6 h-[600px] [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] overflow-hidden">
           <div className="animate-marquee-vertical">
             {COLUMN_A.map((t, i) => <TestimonialCard key={i} testimonial={t} />)}
@@ -43,7 +42,6 @@ export default function TestimonialsShowcase() {
           </div>
         </div>
 
-        {/* Mobile Horizontal Row */}
         <div className="md:hidden w-screen -mx-6 overflow-hidden">
           <div className="flex gap-4 animate-marquee-horizontal w-max px-6">
             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => <TestimonialCard key={i} testimonial={t} />)}

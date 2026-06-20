@@ -4,7 +4,7 @@ export default function Philosophy() {
   return (
     <section className="w-full bg-[#4A5D6E] relative py-15 md:py-15 px-6 overflow-hidden">
       
-      {/* ================= BACKGROUND TOPOGRAPHY LINES LAYER ================= */}
+
       <div className="absolute inset-0 w-full h-full opacity-[0.07] pointer-events-none select-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1440 400" preserveAspectRatio="none">
           <path d="M-100,150 C300,50 600,300 1000,100 C1200,20 1400,180 1600,80" fill="none" stroke="white" strokeWidth="2.5" />
@@ -14,7 +14,7 @@ export default function Philosophy() {
         </svg>
       </div>
 
-      {/* ================= CONTENT CONTAINER ================= */}
+
       <div className="max-w-[950px] mx-auto flex flex-col items-center justify-center text-center relative z-10">
         
         <h2 className="text-[#E96125] text-[30px] sm:text-[32px] md:text-[50px] font-bold tracking-normal mb-6">

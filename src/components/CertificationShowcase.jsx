@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Import your images
 import cert1 from '../assets/image1.png';
 import cert2 from '../assets/image2.png';
 import cert3 from '../assets/image3.png';
@@ -9,7 +8,7 @@ import cert4 from '../assets/image4.png';
 import cert5 from '../assets/image5.png';
 
 const certifications = [cert1, cert2, cert3, cert4, cert5];
-// Tripled the array to ensure enough content for the larger distance
+
 const scrollCerts = [...certifications, ...certifications, ...certifications];
 
 const CertificationCarousel = () => {
@@ -25,14 +24,14 @@ const CertificationCarousel = () => {
         </p>
       </div>
 
-      {/* Carousel Section with enhanced movement */}
+
       <motion.div
         className="flex gap-12 items-center"
-        // Starting far off-screen and ending far off-screen
+
         initial={{ x: "100vw" }}
         animate={{ x: "-100vw" }}
         transition={{
-          duration: 15, // Faster speed (lower number = faster)
+          duration: 15,
           ease: "linear",
           repeat: Infinity,
         }}
@@ -40,7 +39,6 @@ const CertificationCarousel = () => {
         {scrollCerts.map((cert, index) => (
           <motion.div 
             key={index} 
-            // Adds the rotation effect
             whileHover={{ rotate: 10, scale: 1.1 }}
             className="flex-shrink-0 bg-white p-6 rounded-2xl w-[280px] h-[280px] flex items-center justify-center shadow-lg"
           >

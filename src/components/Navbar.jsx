@@ -49,7 +49,7 @@ export default function Navbar() {
             <ChevronDown size={18} className="text-gray-800 group-hover:text-[#E96125] stroke-2" />
           </div>
           
-          {/* PentaKuhl Link with Routing */}
+
           <Link to="/pentakuhl" ref={dropdownRef} className="relative cursor-pointer flex items-center gap-0.5" onClick={() => setShowKuhlDropdown(!showKuhlDropdown)}>
             <span className="text-[#6b7280] font-medium hover:text-[#E96125] transition-colors">Penta</span>
             <span className="text-[#00A4E4] font-bold hover:text-[#E96125] transition-colors">KÜHL</span>
@@ -68,7 +68,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+
       <div className={`fixed inset-0 bg-white z-[100] md:hidden flex flex-col h-screen transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-between items-center px-6 py-4">
           <a href="#contact" onClick={() => setIsOpen(false)} className="bg-[#ef6930] text-white text-[16px] font-bold px-6 py-2.5 rounded-xl">Contact</a>

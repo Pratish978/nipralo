@@ -42,19 +42,19 @@ export default function Footer() {
     <footer className="w-full bg-white border-t border-gray-100 py-20">
       <div className="max-w-[1360px] mx-auto px-6 md:px-12">
         
-        {/* India Section */}
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
           <RegionHeader highlight="India" description="Penta Freight delivers seamless logistics across India, with branches in key cities for your convenience." />
           {INDIA_OFFICES.map((office) => <OfficeBlock key={office.city} office={office} />)}
         </div>
 
-        {/* USA Section */}
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
           <RegionHeader highlight="USA" description="Penta Freight has expanded its operations globally, beginning with the USA, to offer continuous support across continents." />
           {USA_OFFICES.map((office) => <OfficeBlock key={office.city} office={office} />)}
         </div>
 
-        {/* Bottom Metadata */}
+
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-[14px] text-[#4a4a4a]">
           <p>© 2026 Penta Freight. All Rights Reserved Developed by Nipralo</p>
           <div className="flex items-center gap-4">

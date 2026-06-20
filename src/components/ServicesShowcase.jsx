@@ -78,22 +78,22 @@ function ServiceCard({ service, index }) {
         transformOrigin: 'top center'
       }}
     >
-      {/* Container holding image & content card element */}
+
       <div className="w-full bg-[#FDF8F7] rounded-[28px] overflow-hidden flex flex-col md:flex-row min-h-[440px] md:h-[480px] shadow-[0_-10px_35px_rgba(0,0,0,0.02),0_25px_50px_rgba(0,0,0,0.04)] border border-orange-100/10">
         
-        {/* Left Panel: Mask Image Segment */}
+
         <div className="relative w-full md:w-[48%] h-[260px] md:h-auto overflow-hidden flex-shrink-0">
           <img
             src={service.image}
             alt={service.title}
             className="w-full h-full object-cover object-center"
           />
-          {/* Linear Mask Gradient Fade Layer Controls */}
+
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#FDF8F7] hidden md:block" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FDF8F7] block md:hidden" />
         </div>
 
-        {/* Right Panel: Content Block Descriptions Elements */}
+
         <div className="w-full md:w-[52%] p-8 sm:p-12 md:p-14 flex flex-col justify-center items-start text-left">
           <h3 className="text-[#1a1a1a] text-[28px] sm:text-[34px] font-medium mb-5 tracking-tight">
             {service.title}
@@ -105,7 +105,7 @@ function ServiceCard({ service, index }) {
             ))}
           </div>
 
-          {/* Badges Wrappers Items */}
+
           <div className="flex flex-wrap gap-2.5 mb-8">
             {service.badges.map((badge) => (
               <span
@@ -117,7 +117,7 @@ function ServiceCard({ service, index }) {
             ))}
           </div>
 
-          {/* Core Action CTA Buttons */}
+
           <button className="bg-[#E2622F] hover:bg-[#cc551f] text-white font-medium text-[14px] px-8 py-3 rounded-xl transition-colors duration-200 tracking-wide shadow-2xs">
             Read More
           </button>
@@ -140,7 +140,7 @@ export default function ServicesShowcase() {
     <section className="w-full bg-white py-16 px-6 md:px-12 lg:px-24 relative">
       <div className="max-w-[1280px] mx-auto">
 
-        {/* Header Block Frame Panel */}
+
         <div
           className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-16 transition-all duration-700 ease-out"
           style={{
@@ -166,7 +166,6 @@ export default function ServicesShowcase() {
           </p>
         </div>
 
-        {/* Vertical Overlapping Scroll Container Deck */}
         <div className="relative w-full flex flex-col items-center">
           {SERVICES_DATA.map((service, index) => (
             <ServiceCard 
