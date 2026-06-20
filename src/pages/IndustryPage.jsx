@@ -327,7 +327,7 @@ export default function IndustriesPage() {
           <button
             className="px-7 py-3 rounded-md font-semibold text-white transition-transform duration-300 hover:scale-105 active:scale-95"
             style={{
-              background: "linear-gradient(135deg, #f0916a 0%, #e8703f 100%)",
+              background: "linear-gradient(135deg, #f0916a 0%, #e8703f 100%)",//
             }}
           >
             Contact Us Today
